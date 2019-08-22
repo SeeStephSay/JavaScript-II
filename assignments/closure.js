@@ -4,7 +4,27 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+// FIRST ATTEMPT 
+// function unitedStates() {
+//   const president = "Kid President";
+//   console.log(`Everybody can be kind, says ${president}`);
+  
+//   function Oklahoma() {
+//     const governor = "Kevin Stitt";
+//     console.log(`Kevin Stitt is a good businessman, says ${president}.`);
+//   }
+// }
 
+let combineName = (function() {
+  let firstName = "Stephanie";
+  return function() {
+    let lastName="Butenhof"; 
+    let fullName = firstName + " " + lastName; 
+  return fullName
+  }
+})();
+
+combineName();
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
 
