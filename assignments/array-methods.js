@@ -109,7 +109,7 @@ console.log(runners);
 let runnersLargeSizeShirt = [];
 runners.filter(function(runners){
   if(runners.shirt_size === "L") {
-    return runnersLargeSizeShirt.push(`${runners.first_name} ${runners.last_name}`)
+    return runnersLargeSizeShirt.push(`${runners.first_name} ${runners.last_name}`);
   }
 });
 console.log(runnersLargeSizeShirt);
@@ -122,7 +122,7 @@ for(let i= 0; i < runners.length; i++) {
 }
 const finalDonation = runners.reduce((total, donations) => {
   return total += donations.donation;
-}, 0)
+}, 0);
 console.log(ticketPriceTotal);
 console.log(finalDonation);
 
@@ -151,9 +151,30 @@ console.log(companies);
 
 // Problem 2
 // The race organizer needs everyone's email addresses to send them updates about the race. map()
+const mailingList = runners.map(
+  function(email) {
+  return `${email.first_name} ${email.last_name}, ${email.email}`;
+  }
+);
 
-
-
+console.log(mailingList);
 
 // Problem 3
 // The race organizer needs to know how much money was raised, total. reduce()
+// The race organizer is going to group people into waves based on their last name, so they need an alphabetical list of all race participants ordered by last name.
+
+// const lastNameFirst = runners.sort(
+//   function(lastName)
+//   return `${lastName.last_name}`
+// )
+// console.log(runners.sort());
+
+let lastNamesFirst = [];
+runners.forEach(names => {
+  if (lastNamesFirst).indexOf(names.last_name) === -1) {
+  lastNamesFirst.push(names.last_name);
+  }
+});
+lastNamesFirst.sort();
+
+console.log(lastNamesFirst);
