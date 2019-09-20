@@ -160,7 +160,6 @@ const mailingList = runners.map(
 console.log(mailingList);
 
 // Problem 3
-// The race organizer needs to know how much money was raised, total. reduce()
 // The race organizer is going to group people into waves based on their last name, so they need an alphabetical list of all race participants ordered by last name.
 
 // const lastNameFirst = runners.sort(
@@ -169,12 +168,16 @@ console.log(mailingList);
 // )
 // console.log(runners.sort());
 
+// let lastNamesFirst = [];
+// runners.forEach(names => {
+//   if (lastNamesFirst).indexOf(names.last_name) === -1) {
+//   lastNamesFirst.push(names.last_name);
+//   }
+// });
+// lastNamesFirst.sort();
+
 let lastNamesFirst = [];
-runners.forEach(names => {
-  if (lastNamesFirst).indexOf(names.last_name) === -1) {
-  lastNamesFirst.push(names.last_name);
-  }
-});
+runners.forEach(names => lastNamesFirst.push(`${names.last_name}, ${names.first_name};`));
 lastNamesFirst.sort();
 
 console.log(lastNamesFirst);
