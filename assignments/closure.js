@@ -20,14 +20,25 @@ console.log(timeLord());
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
 // ==== Challenge 2: Implement a "counter maker" function ====
-const counterMaker = () => {
+const counterMaker = (function() {
 	// IMPLEMENTATION OF counterMaker:
 	// 1- Declare a `count` variable with a value of 0. We will be mutating it, so declare it using `let`!
+	let count = 0;
 	// 2- Declare a function `counter`. It should increment and return `count`.
 	//      NOTE: This `counter` function, being nested inside `counterMaker`,
 	//      "closes over" the `count` variable. It can "see" it in the parent scope!
-	// 3- Return the `counter` function.
-};
+	return function counter() {
+		count += 1;
+		// 3- Return the `counter` function.
+		return count;
+	};
+})();
+
+console.log(counterMaker());
+console.log(counterMaker());
+console.log(counterMaker());
+console.log(counterMaker());
+
 // Example usage: const myCounter = counterMaker();
 // myCounter(); // 1
 // myCounter(); // 2
@@ -39,6 +50,23 @@ const counterMaker = () => {
 // ==== Challenge 4: Create a counter function with an object that can increment and decrement ====
 const counterFactory = () => {
 	// Return an object that has two methods called `increment` and `decrement`.
+	let counter = 0;
 	// `increment` should increment a counter variable in closure scope and return it.
-	// `decrement` should decrement the counter variable and return it.
+	return {
+		increment : function() {
+			return (counter += 1);
+		},
+		// `decrement` should decrement the counter variable and return it.
+		decrement : function() {
+			return (counter -= 1);
+		},
+	};
 };
+
+const callCF = counterFactory();
+
+console.log(callCF.increment());
+console.log(callCF.increment());
+console.log(callCF.decrement());
+console.log(callCF.increment());
+console.log(callCF.increment());
