@@ -4,16 +4,14 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
-const timeLord = (function() {
+const timeLord = function() {
 	const firstName = 'The';
 	return function() {
 		let lastName = 'Doctor';
 		let doctorWho = firstName + ' ' + lastName;
 		return doctorWho;
 	};
-})();
-
-timeLord();
+};
 
 console.log(timeLord());
 
