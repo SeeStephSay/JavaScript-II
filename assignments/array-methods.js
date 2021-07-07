@@ -57,29 +57,127 @@ const runners = [
 
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
+// FIRST ATTEMPT
+// let fullNames = [];
+
+// function firstAndLast(names) {
+//   return (`${names.first_name} ${names.last_name}`);
+// }
+// runners.forEach(function.push(names));
+// console.log(fullNames);
+
+// SECOND TRY WITH MDN DOCS AS REFERENCE
+// let fullNames = [];
+// runners.forEach(function(names) {
+//   fullNames.push(names);
+// });
+// console.log(fullNames);
+
+// THIRD ATTEMPT REFERENCING SLACK CHAT
+// let fullNames = [];
+// runners.forEach(function(runners) {
+//   fullNames.push(runners);
+// });
+// console.log(fullNames);
+
+// FOURTH ATTEMPT REFERENCING FOREACH BREAKOUT SOLUTION
 let fullNames = [];
+runners.forEach(function(names) {
+  return fullNames.push(`${names.first_name} ${names.last_name}`);
+});
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+// let firstNamesAllCaps = [];
+// FIRST ATTEMPT
+// var firstNamesAllCaps = runners.map(function(first_name) {
+//   first_name = first_name.toUpperCase();
+//   return first_name;
+// });
+// console.log(firstNamesAllCaps);
+
+let firstNamesAllCaps = runners.map(function(runner) { 
+  return runner.first_name.toUpperCase();
+});
+
 console.log(firstNamesAllCaps);
+console.log(runners);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
 let runnersLargeSizeShirt = [];
+runners.filter(function(runners){
+  if(runners.shirt_size === "L") {
+    return runnersLargeSizeShirt.push(`${runners.first_name} ${runners.last_name}`);
+  }
+});
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
 let ticketPriceTotal = 0;
+for(let i= 0; i < runners.length; i++) {
+  ticketPriceTotal += runners[i].donation;
+}
+const finalDonation = runners.reduce((total, donations) => {
+  return total += donations.donation;
+}, 0);
 console.log(ticketPriceTotal);
+console.log(finalDonation);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// The event organizer needs a list of companies to put on the sponsor banner. Also, try to remove duplicates.
+// EXAMPLE  
+// let uniqueCompanies = [];
+// for (let i = 0; i < runners.length; i++) {
+//   if (uniqueCompanies.indexOf(runners[i].company_name) === -1) {
+//     uniqueCompanies.push(runners[i].company_name);
+//   }
+// }
+
+let companies = [];
+runners.forEach(runners => {
+  if (companies.indexOf(runners.company_name) === -1) {
+  companies.push(runners.company_name);
+  }
+});
+companies.sort();
+
+console.log(companies);
 
 // Problem 2
+// The race organizer needs everyone's email addresses to send them updates about the race. map()
+const mailingList = runners.map(
+  function(email) {
+  return `${email.first_name} ${email.last_name}, ${email.email}`;
+  }
+);
+
+console.log(mailingList);
 
 // Problem 3
+// The race organizer is going to group people into waves based on their last name, so they need an alphabetical list of all race participants ordered by last name.
+
+// const lastNameFirst = runners.sort(
+//   function(lastName)
+//   return `${lastName.last_name}`
+// )
+// console.log(runners.sort());
+
+// let lastNamesFirst = [];
+// runners.forEach(names => {
+//   if (lastNamesFirst).indexOf(names.last_name) === -1) {
+//   lastNamesFirst.push(names.last_name);
+//   }
+// });
+// lastNamesFirst.sort();
+
+let lastNamesFirst = [];
+runners.forEach(names => lastNamesFirst.push(`${names.last_name}, ${names.first_name};`));
+lastNamesFirst.sort();
+
+console.log(lastNamesFirst);
